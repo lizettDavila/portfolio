@@ -1,7 +1,17 @@
+import { useRef } from "react";
+import { ScrollObserver } from "../hooks/ScrollObserver";
+
+
+
+
 const Skills = () => {
-const skills = ['HTML5', 'CSS3', 'JS', 'TS', 'React', 'Next.js', 'Git', 'CI/CD'];
+    const sectionRef = useRef(null);
+    ScrollObserver({ refElement: sectionRef, name: 'link-skills' })
+    const skills = ['HTML5', 'CSS3', 'JS', 'TS', 'React', 'Next.js', 'Git', 'CI/CD'];
+
+
     return (
-        <section className=" mx-6" id="skills">
+        <section ref={sectionRef} className=" mx-6" id="skills">
             <h2 className="text-3xl font-bold tracking-tight pb-8 text-center text-(--color-title)">My Skills</h2>
             <div className="bg-[#2D3748] w-full p-8 rounded-xl shadow-lg">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center">
