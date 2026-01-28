@@ -1,6 +1,9 @@
-import { FC } from "react";
+'use client';
+
+import { useRef, type FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollObserver } from "../hooks/ScrollObserver";
 
 interface ProjectsProps {
     projectTitle: string;
@@ -13,17 +16,21 @@ interface ProjectsProps {
 }
 
 const Projects: FC<ProjectsProps> = ({ projectTitle, projectDescription, projectImage, projectAlt, techStack, liveDemoLink, codeLink }) => {
+    const sectionRef = useRef<any>(null)
+    ScrollObserver({refElement: sectionRef, name: 'link-projects'})
+
+
     return (
-        <section className="py-16 md:pt-24" id="projects">
+        <section ref={sectionRef} id="projects" className="py-16 md:pt-24">
             <h2 className="text-3xl font-bold tracking-tight pb-8 text-center text-(--color-title)">My Projects</h2>
             <div className="space-y-12">
                 <div className="bg-[#2D3748] m-6 rounded-xl overflow-hidden shadow-lg transition-shadow hover:shadow-2xl">
-                    <div className="grid lg:grid-cols-2">
+                    <div  className="grid lg:grid-cols-2">
                         <div className="relative w-full h-[350px] bg-amber-100 flex justify-center">
                             <Image
                                 width={260}
                                 height={350}
-                                 style={{ objectFit: 'fill' }}
+                                style={{ objectFit: 'fill' }}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt={projectAlt} src={projectImage} />
                         </div>
 

@@ -1,85 +1,114 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Icon from "../../public/computerAnimated.svg";
 import Link from "next/link";
+import Icon from "../../public/computerAnimated.svg";
+import { Menu, X, Download } from "lucide-react";
+import '../../app/globals.css'
+
+
 
 const Header = () => {
+  const modalRef = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setSection] = useState("");
+
+
+  const handleSection = (value: string) => {
+    setSection(value);
+  }
+
+  const links = () => {
+    return (
+      <>
+        <Link
+          id="link-projects"
+          onClick={() => setSection('projects')}
+          href="/#projects"
+          as="/#projects"
+          className="border-b-2 border-gray-400 w-full flex justify-center pb-2 md:border-none md:pb-0 md:grid md:justify-start"
+        >
+          <span className={`link-header-base`}>
+            Projects
+          </span>
+        </Link>
+
+
+        <Link
+          id="link-skills"
+          onClick={() => handleSection("skills")}
+          href="/#skills"
+          as="/#skills"
+           className="border-b-2 border-gray-400 w-full flex justify-center pb-2 md:border-none md:pb-0 md:grid md:justify-start"
+        >
+          <span className={`link-header-base`}>
+            Skills
+          </span>
+        </Link>
+
+        <Link
+          id="link-contact"
+          onClick={() => handleSection("contact")}
+          href="/#contact"
+          as="/#contact"
+           className="border-b-2 border-gray-400 w-full flex justify-center pb-2 md:border-none md:pb-0 md:grid md:justify-start"
+        >
+          <span className={`link-header-base`}>
+            Contact
+          </span>
+        </Link>
+
+        <Link
+          className=" flex cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 bg-teal-600 mt-4 p-4 md:mt-0"
+          href="resume/Lizett_Enriquez_FrontEndDeveloper.pdf"
+          download={true}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="flex items-center gap-2">
+            <Download size={20}/>
+            <span className="truncate">Resume</span>
+          </div>
+        </Link>
+      </>
+    )
+  }
 
   return (
-    <header className="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-4">
-            <div className="text-primary text-2xl">
-              <Image src={Icon} alt="Computer Icon" width={40} height={40} />
-            </div>
-            <h2 className="text-lg font-bold text-(--color-title)">
-              Lizett Enríquez
-            </h2>
+    <>
+      <header className="hidden fixed px-4 inset-0 h-15 grid-cols-2 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 md:grid ">
+        <div className="flex items-center gap-8">
+          <div className="text-primary text-2xl">
+            <Image src={Icon} alt="Computer Icon" width={40} height={40} />
           </div>
-          <div >
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="relative flex items-center gap-8 md:hidden" >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-menu"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 8l16 0" /><path d="M4 16l16 0" /></svg>
-            </button>
-            <nav className={`bg-(--background-dark) mr-5 flex flex-col p-5 h-55 gap-4 border-2 border-amber-50 rounded-md shadow-md shadow-sky-200 md:flex-row md:gap-8 md:items-center md:mt-0 md:p-0 md:h-auto md:border-0 md:shadow-none ${isMenuOpen ? "fixed z-10 right-0 top-12 bottom-0" : "hidden"} md:flex md:bg-transparent`}>
-
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <a
-                  className="text-sm font-medium hover:text-primary transition-colors text-(--color-title)"
-                  href="#projects"
-                >
-                  Projects
-                </a>
-                <a
-                  className="text-sm font-medium hover:text-primary transition-colors text-(--color-title)"
-                  href="#skills"
-                >
-                  Skills
-                </a>
-                <a
-                  className="text-sm font-medium hover:text-primary transition-colors text-(--color-title)"
-                  href="#contact"
-                >
-                  Contact
-                </a>
-              </div>
-
-              <Link
-                className=" flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 bg-emerald-500 mt-4 p-4 md:mt-0"
-                href="resume/Lizett_Enriquez_FrontEndDeveloper.pdf"
-                download={true}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="icon icon-tabler icons-tabler-outline icon-tabler-download"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
-                    <path d="M7 11l5 5l5 -5" />
-                    <path d="M12 4l0 12" />
-                  </svg>
-                  <span className="truncate">Resume</span>
-                </div>
-              </Link>
-            </nav>
-          </div>
+          <h2 className="text-lg font-bold text-(--color-title)">
+            Lizett Enríquez
+          </h2>
         </div>
+        <div className="grid grid-cols-4 items-center">
+          {links()}
+        </div>
+      </header>
+
+      <div className="relative inherit md:hidden">
+        <header onClick={()=>setIsMenuOpen(true)} className="fixed mr-2 mt-2 shadow-md/30 shadow-cyan-500/60 right-0 top-0 h-15 w-15 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border rounded-full border-gray-200 dark:border-gray-700">
+            <Menu size={28} className="fixed top-[27%] right-[26%] text-teal-700 "/>
+        </header>
+        {isMenuOpen &&        
+        <div onClick={()=>setIsMenuOpen(false)} ref={modalRef} className="fixed top-0 bottom-0 z-60 w-full bg-gray-950/90 ">
+          <div className="m-auto mt-[50px] bg-gray-800 rounded-md h-[300px] w-[280px] ">
+            <div className="w-full p-2 flex flex-col items-end">
+              <X className="text-teal-500"/>
+            </div>
+            <article className="flex flex-col gap-8 pb-8 pt-2 px-4 items-center">
+              {links()}
+            </article>
+          </div> 
+        </div>
+        }
       </div>
-    </header>
+    </>
   );
 };
 

@@ -8,12 +8,26 @@
 
 }
 
-
-@theme inline {
-  --color-title: oklch(98.5% 0.002 247.839)
-}
-
 body {
   background: var(--background-dark);
   font-family: Inter, "sans-serif";
-} 
+  color: white;
+}
+
+@layer components {
+  .link-base {
+    @apply shadow-sky-100 flex min-w-[84px] max-w-[480px] items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-white text-base font-bold leading-normal tracking-[0.015em] hover:opacity-80 transition delay-150 duration-300 ease-in-out hover:-translate-y-1  transition-opacity;
+  }
+
+  .link-gradient-github {
+    @apply shadow-md shadow-teal-500/50 bg-gradient-to-r from-teal-500 to-cyan-500 cursor-pointer text-white px-4 py-2 rounded-md;
+  }
+
+  .link-gradient-linkedin {
+    @apply shadow-md shadow-sky-500/50 bg-gradient-to-r from-sky-600 to-blue-600 cursor-pointer text-white px-4 py-2 rounded-md;
+  }
+
+  .link-header-base {
+    @apply text-sm font-medium hover:text-blue-500 hover:underline
+  }
+}
