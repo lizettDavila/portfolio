@@ -29,10 +29,6 @@ export const ScrollObserver = ({ refElement, name }: Props) => {
 
         if (refElement.current) {
             observer.observe(refElement.current);
-            refElement.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            })
         }
 
         return () => {
