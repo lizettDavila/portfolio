@@ -20,7 +20,7 @@ export default function Home() {
     <div className="h-screen w-full flex flex-col gap-0 md:gap-16" >
       <Header />
       <SectionPresentation />
-      <Projects projectAlt="vehicle" projectImage='/portald.png' projectTitle="Vehicle Administrative Platform" projectDescription="A full-featured online administrative platform built with NextJS." techStack={['Next.js', 'Typescript', 'Tankstack Query', 'Tailwind', 'Material-ui', 'Axios']} liveDemoLink="https://rent-vehicles-ikin-l7nguz529-lizettdavilas-projects.vercel.app/" codeLink="https://github.com/lizettDavila/rentVehicles/tree/main" />
+      <Projects projectAlt="vehicle" projectImage='/portald.png' projectTitle="Vehicle Administrative Platform" projectDescription="A full-featured online administrative platform built with NextJS." techStack={['Next.js', 'Typescript', 'Tankstack Query', 'Tailwind', 'Material-ui', 'Axios']} liveDemoLink="https://rent-vehicles-ikin-b0nijdcmw-lizettdavilas-projects.vercel.app/" codeLink="https://github.com/lizettDavila/rentVehicles/tree/main" />
       <Skills />
       <Contact />
       <Footer />
